@@ -48,8 +48,10 @@ export class TagsService {
   }
 
   async createTag(name: string) {
-    return this.prisma.tag.create({
-      data: { name },
+    return this.prisma.tag.upsert({
+      where: { name },
+      update: {}, // 如果存在，不做任何更新
+      create: { name }, // 如果不存在，创建新标签
     });
   }
 }

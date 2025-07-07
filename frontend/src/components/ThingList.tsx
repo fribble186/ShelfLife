@@ -213,7 +213,7 @@ const ThingList = () => {
                     />
                   </Box>
 
-                  {thing?.tags?.length && (
+                  {(thing?.tags || []).length === 0 && (
                     <Box
                       sx={{
                         display: "flex",

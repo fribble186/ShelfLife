@@ -96,12 +96,14 @@ const ThingForm = () => {
           ...formData,
           recurringInterval: Number(formData.recurringInterval),
           notifyBeforeExpiry: Number(formData.notifyBeforeExpiry),
+          quantity: Number(formData.quantity),
         });
       } else {
         await thingsApi.create({
           ...formData,
           recurringInterval: Number(formData.recurringInterval),
           notifyBeforeExpiry: Number(formData.notifyBeforeExpiry),
+          quantity: Number(formData.quantity),
         });
       }
 
