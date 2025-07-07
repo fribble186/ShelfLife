@@ -33,6 +33,7 @@ const ThingForm = () => {
   const [tags, setTags] = useState<Tag[]>([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [newTag, setNewTag] = useState<string>("");
 
   const [formData, setFormData] = useState<CreateThingDto>({
     name: "",
@@ -136,6 +137,16 @@ const ThingForm = () => {
     }
   };
 
+  const handleAddNewTag = () => {
+    if (newTag.trim()) {
+      setFormData((prev) => ({
+        ...prev,
+        tags: [...(prev.tags || []), newTag],
+      }));
+      setNewTag("");
+    }
+  };
+
   if (loading) {
     return (
       <Box
@@ -217,7 +228,9 @@ const ThingForm = () => {
               multiple
               options={tags.map((tag) => tag.name)}
               value={formData.tags || []}
+              inputValue={newTag}
               onChange={(_, newValue) => handleInputChange("tags", newValue)}
+              onInputChange={(_, newInputValue) => setNewTag(newInputValue)}
               renderInput={(params) => (
                 <TextField
                   {...params}
@@ -232,6 +245,13 @@ const ThingForm = () => {
               }
               freeSolo
             />
+            <Button
+              variant="contained"
+              onClick={handleAddNewTag}
+              sx={{ mt: 1 }}
+            >
+              添加新项
+            </Button>
           </Grid>
 
           <Grid item xs={12}>
