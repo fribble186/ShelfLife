@@ -11,5 +11,4 @@ build/
 # Environment variables
 .env
 migrations/
-.cursor/
 data/

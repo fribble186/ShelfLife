@@ -1,0 +1,17 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 前端开发环境说明
+
+前端代码位于 [frontend/src](mdc:frontend/src)。
+
+主要技术栈：
+- React
+- Vite
+- MUI (Material-UI)
+- TypeScript
+
+
+使用 pnpm 做为包管理器

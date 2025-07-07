@@ -1,0 +1,34 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+# 后端开发环境说明
+
+后端代码位于 [backend/src](mdc:backend/src)。
+
+代码结构
+shelflife/
+├── backend/ # 后端代码
+│ ├── src/
+│ │ ├── things/ # 事物管理模块
+│ │ ├── tags/ # 标签管理模块
+│ │ ├── consumption/ # 消耗记录模块
+│ │ ├── notification/ # 通知模块
+| | ├── recurring/ # 循环模块
+│ │ └── prisma/ # 数据库服务
+│ └── prisma/
+│ └── schema.prisma # 数据库模型
+
+主要技术栈：
+
+- NestJS
+- TypeORM
+- TypeScript
+
+可以参考的文档：
+
+- [prisma](https://www.prisma.io/docs)
+
+使用 pnpm 做为包管理器
