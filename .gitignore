@@ -10,5 +10,4 @@ build/
 
 # Environment variables
 .env
-migrations/
 data/
