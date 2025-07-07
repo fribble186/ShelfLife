@@ -1,8 +1,9 @@
 # 使用 Node.js 18 作为基础镜像
 FROM node:18-alpine
 
-# 安装 wget 和 postgresql-client 用于健康检查
-RUN apt-get update && apt-get install -y wget postgresql-client && rm -rf /var/lib/apt/lists/*
+# 安装 wget、postgresql-client 和 openssl1.1-compat 用于健康检查和 Prisma 兼容性
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories && \
+    apk add wget postgresql-client openssl --no-cache
 
 # 设置工作目录
 WORKDIR /app
