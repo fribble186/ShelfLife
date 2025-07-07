@@ -1,0 +1,46 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Thing {
+  id                  String   @id @default(cuid())
+  name                String
+  expireAt            DateTime
+  isRecurring         Boolean  @default(false)
+  recurringInterval   Int?     // 循环间隔（天）
+  notifyBeforeExpiry  Int      // 距离保质期多久前算即将到期并通知（天）
+  quantity            Int      @default(1)
+  tags                Tag[]
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  consumptionRecords ConsumptionRecord[]
+
+  @@map("things")
+}
+
+model ConsumptionRecord {
+  id        String   @id @default(cuid())
+  thingId   String
+  thing     Thing    @relation(fields: [thingId], references: [id], onDelete: Cascade)
+  quantity  Int      @default(1)
+  timestamp DateTime @default(now())
+
+  @@map("consumption_records")
+}
+
+model Tag {
+  id     String @id @default(cuid())
+  name   String @unique
+  things Thing[]
+
+  @@map("tags")
+} 
